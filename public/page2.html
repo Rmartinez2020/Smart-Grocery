@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/superhero/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/d7973d9d11.js" crossorigin="anonymous"></script>
-    <title>Auth with Passport</title>
+    <title>Smart Grocery</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="/">Auth with Passport</a>
+        <a class="navbar-brand" href="/"><i class="fas fa-shopping-cart"></i>Smart Grocery</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,10 @@
                     <a class="nav-link" href="/">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-primary" href="/user/page2">Page Two</a>
+                    <a class="nav-link text-primary" href="/user/page2">Make your grocery list</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/user/page3">Search a recipe</a>
                 </li>
             </ul>
         </div>
@@ -38,6 +41,31 @@
             </div>
         </div>
     </div>
+
+    <form>
+        <fieldset>
+          <label for="nameField">Name</label>
+          <input type="text" placeholder="CJ Patoilo" id="nameField">
+          <label for="ageRangeField">Age Range</label>
+          <select id="ageRangeField">
+            <option value="0-13">0-13</option>
+            <option value="14-17">14-17</option>
+            <option value="18-23">18-23</option>
+            <option value="24+">24+</option>
+          </select>
+          <label for="commentField">Comment</label>
+          <textarea placeholder="Hi CJ …" id="commentField"></textarea>
+          <div class="float-right">
+            <input type="checkbox" id="confirmField">
+            <label class="label-inline" for="confirmField">Send a copy to yourself</label>
+          </div>
+          <input class="button-primary" type="submit" value="Send">
+        </fieldset>
+      </form>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"
         integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/js/user.js"></script>
