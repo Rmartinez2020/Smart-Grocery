@@ -22,7 +22,14 @@ router.post("/api/newRecipe", (req, res) => {
         n_ingredients: Recipe.description
     }).then(dbNewRecipe => {
         res.send(dbNewRecipe);
-    })
+    });
 
-})
+});
+
+router.post("/api/newList", (req, res) => {
+    const newList = req.body;
+    db.Groceries.create({newList}).then(dbNewList => {
+        res.send(dbNewList);
+    });
+});
 module.exports = router;
