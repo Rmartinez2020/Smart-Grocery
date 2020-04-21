@@ -2,17 +2,9 @@ module.exports = function(sequelize, DataTypes) {
     var Recipes = sequelize.define("Recipe", {
       name: {
         type: DataTypes.STRING,
-        allowNull: false
-      },
-      id2: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: true
       },
       minutes: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      contributor_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
@@ -26,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       nutrition: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       n_steps: {
         type: DataTypes.INTEGER,
@@ -34,19 +26,19 @@ module.exports = function(sequelize, DataTypes) {
       },
       steps: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       ingredients: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       n_ingredients: {
           type:DataTypes.INTEGER,
-          allowNull: false
+          allowNull: true
       }
     });
     return Recipes;
