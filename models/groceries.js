@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 module.exports = function (sequelize, DataTypes) {
+  // Grocery table
   var Groceries = sequelize.define("Groceries", {
     name2: {
       type: DataTypes.STRING,

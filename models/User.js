@@ -1,5 +1,6 @@
 
 module.exports = function (sequelize, DataTypes) {
+// User table
   var User = sequelize.define("User", {
     email: {
       type: DataTypes.STRING,
@@ -14,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false
     }
   });
+  // user has grocerylists
   User.associate = function(models) {
     User.hasMany(models.Groceries, {
       onDelete: "cascade"
