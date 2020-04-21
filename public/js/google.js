@@ -1,67 +1,68 @@
+
+
+function initMap() {
+  var sydney =
+  {
+      lat: 28.5383,
+      lng: 81.3792
+  };
+  map = new google.maps.Map(document.getElementById('map'), {
+      center: sydney,
+      zoom: 12,
+      mapTypeId: 'roadmap',
+
+  });
+  // get user current location
+  var map = new google.maps.Map(document.getElementById('map'),
+   map);
+
+   if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(function (position) {
+           initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+           map.setCenter(initialLocation);
+       });
+   }
+ 
+}
+
+
 $(document).ready(function () {
-// import Axios from "axios"
-// call geocode
+  // global variables
+  let lat = 0;
+  let long = 0;
 
-// geocode();
-// function geocode(){
-// var location = "22 Main st Boston MA";
-// axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
-//     params: {
-//         address: location,
-//         key: "AIzaSyD9Ff1tE0-VCQ6xdBVIecM05QkaMPvHlGU "
-//     }
+  // get current location with lat and long
+  navigator.geolocation.getCurrentPosition((position) => {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    console.log(lat + "and" + long);
 
-// }).then( function(response){
-//     console.log(response)
-// })
-// .catch(function(err){
-//     console.log(err)
-// })
-// }
+  });
 
 
-    // global variables
-    let lat = 0;
-    let long = 0;
+  $("#grocery").click(function (e) {
+    e.preventDefault();
+    console.log(lat + "and" + long + "inside of the click");
+    $("#display-case").empty()
 
+    var winery = "grocery"
+    //Query for google places
 
-    navigator.geolocation.getCurrentPosition((position) => {
-        lat = position.coords.latitude;
-        long = position.coords.longitude;
-        console.log(lat + "and" + long);
+    const queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=8000&keyword=" + winery + "&key=AIzaSyD9Ff1tE0-VCQ6xdBVIecM05QkaMPvHlGU"
 
-    });
+    //AJAX Call to Places API
+    $.ajax({
+      url: queryURL,
+      method: 'GET'
+    }).then(function (response) {
+      console.log(response);
+      // loop for the five nearest location
+      for (var i = 0; i < 9; i++) {
+        var element = response.results[i];
+        console.log(element);
 
-
-    $("#grocery").click(function (e) {
-        e.preventDefault();
-        console.log(lat + "and" + long + "inside of the click");
-        $("#display-case").empty()
-
-        var winery = "grocery"
-        //Query for google places
-
-        const queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + long + "&radius=8000&keyword=" + winery + "&key=AIzaSyD9Ff1tE0-VCQ6xdBVIecM05QkaMPvHlGU"
-
-        //AJAX Call to Places API
-        $.ajax({
-            url: queryURL,
-            method: 'GET'
-        }).then(function (response) {
-            console.log(response);
-            // loop for the five nearest location
-            for (var i = 0; i < 9; i++) {
-                var element = response.results[i];
-                console.log(element);
-
-                // // append them on a card div
-                // var div = $("<p>").addClass("card-name").text(element.name);
-                // var location = $("<p>").addClass("card-location").text(element.vicinity);
-                // var images1 = $("<img>").attr("src", element.icon)
-                // // append the five location on the html
-
-                let card = `
-                <div class="card">
+        let card = `
+              <div class="card">
         
                 <div class="card-content">
                   <div class="media">
@@ -71,8 +72,8 @@ $(document).ready(function () {
                       </figure>
                     </div>
                     <div class="media-content">
-                      <p class="title is-4">${element.name}</p>
-                      <p class="subtitle is-6">${element.vicinity}</p>
+                      <p>${element.name}</p>
+                      <p>${element.vicinity}</p>
                     </div>
                   </div>
             
@@ -81,13 +82,14 @@ $(document).ready(function () {
                 
                 `;
 
-                $("#display-case").append(card);
+        $("#display-case").append(card);
 
-            }
-        })
-            .catch(function (err) {
-                console.log(err);
-            })
-    });
+      }
+    })
+      .catch(function (err) {
+        console.log(err);
+      })
+  });
 
 });
+
