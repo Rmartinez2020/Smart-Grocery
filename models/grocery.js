@@ -1,7 +1,7 @@
-/* eslint-disable linebreak-style */
+
 module.exports = function (sequelize, DataTypes) {
   // Grocery table
-  var Groceries = sequelize.define("Groceries", {
+  var Grocery = sequelize.define("Grocery", {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -11,13 +11,13 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true
     }
   });
-  //make the list belong to a user
-  Groceries.associate = function (models) {
-    Groceries.belongsTo(models.User, {
+  // make the list belong to a user
+  Grocery.associate = function (models) {
+    Grocery.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
-  return Groceries;
+  return Grocery;
 };
