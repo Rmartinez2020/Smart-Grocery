@@ -2,6 +2,8 @@
 // ==========================================
 const router = require("express").Router();
 const db = require("../models");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 // Routes
 // ==========================================
@@ -55,7 +57,20 @@ router.delete("/grocery-list/:id", function(req, res) {
     });   
 
 // Route to search Db for specific recipes
-router.get("/recipe/search", (req,res) => {
-    
+router.get("/recipe/:search", (req,res) => {
+    // querey the recipe table
+    db.Recipe.findAll({
+        // Find all recipes that contain the search param
+        where:{
+            name:{
+                [Op.substring]: req.params.search
+            }
+        },
+        // Only return 10
+         limit: 10 
+    }).then( data => {
+        console.log(data);
+        res.send(data)
+    })
 })
 module.exports = router;
