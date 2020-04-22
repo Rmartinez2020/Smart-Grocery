@@ -25,6 +25,13 @@ router.post("/newRecipe", (req, res) => {
         res.send(dbNewRecipe);
     });
 });
+router.get("/Recipes", (req, res) => {
+  // Take the request...
+  db.Recipe.findAll({    
+  }).then(function(dbAllRecipe) {
+    res.send(dbAllRecipe)
+
+});
 // Route to create new Grocery List
 router.post("/newList", (req, res) => {
     // Get the req data
@@ -38,10 +45,10 @@ router.post("/newList", (req, res) => {
 router.post("/groceries/:id", function (req, res) {
     const newGrocery = req.body;
     db.Grocery.update({
-     name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId ,
+        name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId,
     }, {
         where: {
-            id: req.params.id,   
+            id: req.params.id,
         }
     });
 })
@@ -49,9 +56,9 @@ router.post("/groceries/:id", function (req, res) {
 router.delete("/grocery-list/:id", function(req, res) {
     db.Grocery.destroy({
         where: {
-          id: req.params.id
+            id: req.params.id
         }
-      }).then(function(dbGrocery) {
+    }).then(function (dbGrocery) {
         res.json(dbGrocery);
       });
     });   
