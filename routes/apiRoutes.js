@@ -44,7 +44,7 @@ router.post("/groceries/:id", function (req, res) {
     });
 })
 // Route to delete a grocery list
-router.delete("api/grocery-list/:id", function(req, res) {
+router.delete("/grocery-list/:id", function(req, res) {
     db.Grocery.destroy({
         where: {
           id: req.params.id
@@ -53,4 +53,9 @@ router.delete("api/grocery-list/:id", function(req, res) {
         res.json(dbGrocery);
       });
     });   
+
+// Route to search Db for specific recipes
+router.get("/recipe/search", (req,res) => {
+    
+})
 module.exports = router;
