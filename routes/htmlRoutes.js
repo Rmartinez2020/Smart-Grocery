@@ -12,9 +12,10 @@ router.get("/", auth, (req, res) => {
         where:{
             UserId: req.session.passport.user
         }
-    }).then(lists => {
+    }).then(data => {
+        const Groceries = { lists:data}
         //reder the lists on the page
-        res.render("dashboard", lists)
+        res.render("dashboard", Groceries)
     })
 });
 router.get("/add-recipe", auth, (req, res) => res.render("add-recipe"));
