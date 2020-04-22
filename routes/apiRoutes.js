@@ -35,4 +35,16 @@ router.post("/newList", (req, res) => {
         res.send(dbNewList);
     });
 });
+
+
+// groceries route
+
+router.post("/api/groceries", function(req, res){
+    
+
+})
+
+
 module.exports = router;
+
+
