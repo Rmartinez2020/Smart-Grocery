@@ -6,7 +6,7 @@ const db = require("../models")
 
 // Routes
 // ==========================================
-router.post("/api/newRecipe", (req, res) => {
+router.post("/newRecipe", (req, res) => {
     // Take the request...
     const newRecipe = req.body;
     db.Recipe.create({
@@ -26,8 +26,11 @@ router.post("/api/newRecipe", (req, res) => {
 
 });
 
+// Route to create new Grocery List
 router.post("/newList", (req, res) => {
+    // Get the req data
     const newList = req.body;
+    // Create new row in Grocery table
     db.Grocery.create({name: newList.name, items: newList.items, UserId: newList.UserId}).then(dbNewList => {
         res.send(dbNewList);
     });
