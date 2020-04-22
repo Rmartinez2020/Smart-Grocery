@@ -14,7 +14,6 @@ router.get("/", auth, (req, res) => {
         }
     }).then(data => {
         const Groceries = { lists:data}
-        console.log(data[0].name)
         //reder the lists on the page
         res.render("dashboard", Groceries)
     })
