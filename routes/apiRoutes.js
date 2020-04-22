@@ -43,21 +43,30 @@ router.post("/newList", (req, res) => {
 router.post("/groceries/:id", function (req, res) {
     const newGrocery = req.body;
     db.Grocery.update({
-     name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId ,
+        name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId,
     }, {
         where: {
-            id: req.params.id,   
+            id: req.params.id,
         }
     });
 })
 // Route to delete a grocery list
-router.delete("api/grocery-list/:id", function(req, res) {
+router.delete("api/grocery-list/:id", function (req, res) {
     db.Grocery.destroy({
         where: {
-          id: req.params.id
+            id: req.params.id
         }
-      }).then(function(dbGrocery) {
+    }).then(function (dbGrocery) {
         res.json(dbGrocery);
-      });
-    });   
+    });
+});
+
+// route for a new grocerylist
+router.get("/listChoice/:id", function (req, res) {
+    db.Grocery.findOne({
+        where: {
+            id: req.params.id
+        }
+    });
+});
 module.exports = router;
