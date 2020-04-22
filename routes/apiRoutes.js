@@ -31,9 +31,28 @@ router.post("/newList", (req, res) => {
     // Get the req data
     const newList = req.body;
     // Create new row in Grocery table
-    db.Grocery.create({name: newList.name, items: newList.items, UserId: newList.UserId}).then(dbNewList => {
+    db.Grocery.create({ name: newList.name, items: newList.items, UserId: newList.UserId }).then(dbNewList => {
         res.send(dbNewList);
     });
 });
 
+
+
+// update new groceries
+
+router.post("/groceries/:id", function (req, res) {
+    const newGrocery = req.body;
+    db.Grocery.update({
+     name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId ,
+    }, {
+        where: {
+            id: req.params.id,
+            
+        }
+    });
+
+})
+
 module.exports = router;
+
+

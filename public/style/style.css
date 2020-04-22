@@ -20,17 +20,28 @@ body {
     z-index: 100;
     font-weight: bold;
     top: 100px;
-    left: 100px;
+    left: 75px;
 }
 
-.store-container {
+#grocery {
     position: absolute;
-    background: white;
-    width: 400px;
+    top: 250px;
+    left: 75px;
     z-index: 100;
-    top: 320px;
-    left: 100px;
+    width: 400px;
     border-radius: 30px;
-    bottom: 20px;
+}
+
+.search-container{
+    position: absolute;
+    width: 400px;
+    /* height: 60px; */
+    background-color: gray;
+    z-index: 100;
+    top: 330px;
+    left: 75px;
+    border-radius: 30px;
+    display: flex;
+    bottom: 10px;
 }
 
