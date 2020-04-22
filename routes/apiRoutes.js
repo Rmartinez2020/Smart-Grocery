@@ -23,7 +23,7 @@ router.post("/newRecipe", (req, res) => {
         res.send(dbNewRecipe);
     });
 });
-router.get("/allRecipe", (req, res) => {
+router.get("/Recipes", (req, res) => {
   // Take the request...
   db.Recipe.findAll({    
   }).then(function(dbAllRecipe) {
