@@ -21,7 +21,7 @@ router.get("/", auth, (req, res) => {
 router.get("/add-recipe", auth, (req, res) => res.render("add-recipe"));
 router.get("/user/profile", auth, (req, res) => res.render("profile"));
 router.get("/search", auth, (req, res) => res.render("search"));
-router.get("/google", auth, (req, res) => res.sendFile(path.join(__dirname, "../public/google.html")));
+router.get("/google", auth, (req, res) => res.render("google"));
 router.get("/grocery-list", auth, (req, res) => res.render("grocery-list"));
 
 // login and register forms view
