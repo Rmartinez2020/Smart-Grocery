@@ -35,7 +35,17 @@ router.post("/newList", (req, res) => {
         res.send(dbNewList);
     });
 });
-
+// Route to delete a grocery list
+router.delete("api/grocery-list/:id", function(req, res) {
+    db.Grocery.destroy({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(dbGrocery) {
+        res.json(dbGrocery);
+      });
+  
+    });   
 
 // groceries route
 
