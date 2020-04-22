@@ -7,7 +7,21 @@
     </div>
 
     <div class="container">
-
-    <input class="btn btn-primary" type="submit" value="Edit">
+        <div class="row">
+            <div class="col-6">
+                {{#each lists}}
+                <div class="card">
+                    <div class="card-header">
+                        {{name}}
+                    </div>
+                    <div class="card-body">
+                        {{items}}
+                    </div>
+                </div>
+                <botton class="btn btn-primary" type="submit">Edit</botton>
+                {{/each}}
+            </div>
+        </div>
+    
 
     </div>
