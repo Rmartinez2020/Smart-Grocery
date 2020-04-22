@@ -23,6 +23,13 @@ router.post("/newRecipe", (req, res) => {
         res.send(dbNewRecipe);
     });
 });
+router.get("/Recipes", (req, res) => {
+  // Take the request...
+  db.Recipe.findAll({    
+  }).then(function(dbAllRecipe) {
+    res.send(dbAllRecipe)
+
+});
 // Route to create new Grocery List
 router.post("/newList", (req, res) => {
     // Get the req data
@@ -60,9 +67,6 @@ router.get("/listChoice/:id", function (req, res) {
         where: {
             id: req.params.id
         }
-    })
-
-
-})
-
+    });
+});
 module.exports = router;
