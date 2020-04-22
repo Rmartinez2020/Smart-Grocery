@@ -57,7 +57,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       // loop for the five nearest location
-      for (var i = 0; i < 9; i++) {
+      for (var i = 0; i < 5; i++) {
         var element = response.results[i];
         console.log(element);
 

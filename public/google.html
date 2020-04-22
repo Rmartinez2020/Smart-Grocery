@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/superhero/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/d7973d9d11.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="../public/style/style.css">
 </head>
 
@@ -56,24 +57,28 @@
 
 
 
-   <!-- <button id="grocery">Fin your nearest store</button>--> 
-<button id="grocery"> Your nearest store </button>
-
-    <div id="display-case"></div>
-
-
-<div id="map"></div>
-
-
-
+    <!-- <button id="grocery">Find your nearest store</button>-->
+    <button id="grocery" class="btn btn-secondary btn-lg"> Search your nearest store </button>
+    
+    <div class="search-container">
+        <div class="row">
+            <div class="col-md-12" id="display-case"></div>
+        </div>
+    </div>
 
 
+    <div id="map"></div>
 
 
-<script src="../public/js/google.js"></script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtBNIFkFP0QhKYU8G5fvewyS3h9JkYgcY&callback=initMap">
-    </script>
+
+
+
+
+
+    <script src="../public/js/google.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtBNIFkFP0QhKYU8G5fvewyS3h9JkYgcY&callback=initMap">
+        </script>
 
 </body>
 
