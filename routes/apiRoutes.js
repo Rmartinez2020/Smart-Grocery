@@ -28,7 +28,7 @@ router.post("/api/newRecipe", (req, res) => {
 
 router.post("/newList", (req, res) => {
     const newList = req.body;
-    db.Grocery.create({name: newList.name, items: newList.items, UserId: UserId}).then(dbNewList => {
+    db.Grocery.create({name: newList.name, items: newList.items, UserId: newList.UserId}).then(dbNewList => {
         res.send(dbNewList);
     });
 });
