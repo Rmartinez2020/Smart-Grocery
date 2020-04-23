@@ -21,8 +21,9 @@ $(document).ready(function () {
     
   });
   //delete button function
-  $("#delete-list").click(function(){
-    $("text").remove();
-    console.log("deleted")
+  $(".delete-list").click(function(event){
+    event.preventDefault();
+    const id = $(this).data("listid");
+    console.log(id);
   })
 });
