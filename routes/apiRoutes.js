@@ -77,9 +77,7 @@ router.get("/recipe/:search", (req, res) => {
         // Only return 10
         limit: 10
     }).then(data => {
-        console.log(data);
-        const returnedData = {recipes: data}
-        res.render("search",returnedData)
+        res.send(data);
     })
 })
 module.exports = router;
