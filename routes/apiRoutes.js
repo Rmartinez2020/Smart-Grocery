@@ -2,6 +2,8 @@
 // ==========================================
 const router = require("express").Router();
 const db = require("../models");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 // Routes
 // ==========================================
@@ -23,6 +25,14 @@ router.post("/newRecipe", (req, res) => {
         res.send(dbNewRecipe);
     });
 });
+router.get("/Recipes", (req, res) => {
+    // Take the request...
+    db.Recipe.findAll({
+        limit:50
+    }).then(function (dbAllRecipe) {
+        res.send(dbAllRecipe)
+    });
+});
 // Route to create new Grocery List
 router.post("/newList", (req, res) => {
     // Get the req data
@@ -36,21 +46,38 @@ router.post("/newList", (req, res) => {
 router.post("/groceries/:id", function (req, res) {
     const newGrocery = req.body;
     db.Grocery.update({
-     name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId ,
+        name: newGrocery.name, items: newGrocery.items, UserId: newGrocery.UserId,
     }, {
         where: {
-            id: req.params.id,   
+            id: req.params.id,
         }
     });
 })
 // Route to delete a grocery list
-router.delete("api/grocery-list/:id", function(req, res) {
+router.delete("/grocery-list/:id", function (req, res) {
     db.Grocery.destroy({
         where: {
-          id: req.params.id
+            id: req.params.id
         }
-      }).then(function(dbGrocery) {
+    }).then(function (dbGrocery) {
         res.json(dbGrocery);
-      });
-    });   
+    });
+});
+
+// Route to search Db for specific recipes
+router.get("/recipe/:search", (req, res) => {
+    // querey the recipe table
+    db.Recipe.findAll({
+        // Find all recipes that contain the search param
+        where: {
+            name: {
+                [Op.substring]: req.params.search
+            }
+        },
+        // Only return 10
+        limit: 10
+    }).then(data => {
+        res.send(data);
+    })
+})
 module.exports = router;
