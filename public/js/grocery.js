@@ -20,4 +20,9 @@ $(document).ready(function () {
     })
     
   });
+  //delete button function
+  $("#delete-list").click(function(){
+    $("text").remove();
+    console.log("deleted")
+  })
 });
