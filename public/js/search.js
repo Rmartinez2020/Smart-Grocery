@@ -16,7 +16,8 @@ $(document).ready(function () {
                 let cardBody = $(`<div class="card-body">`);
                 let description = $(`<p> Description:</br> ${data[i].description.toUpperCase()}</p>`);
                 let time = $(`<p> Time to make: ${data[i].minutes} minutes</p>`);
-                cardBody.append(description,time);
+                let view = $(`<button class="btn btn-primary float-right" type="submit" data-id="${data[i].id}" id="view">View Recipe</button>`)
+                cardBody.append(description,time,view);
                 cardDiv.append(cardHeader, cardBody);
                 $(".recipes").append(cardDiv);
             }
