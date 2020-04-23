@@ -28,6 +28,7 @@ router.post("/newRecipe", (req, res) => {
 router.get("/Recipes", (req, res) => {
     // Take the request...
     db.Recipe.findAll({
+        limit:50
     }).then(function (dbAllRecipe) {
         res.send(dbAllRecipe)
     });
