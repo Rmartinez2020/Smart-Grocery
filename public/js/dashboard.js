@@ -1,6 +1,5 @@
 // Once the document loads
 $(document).ready(function () {
- 
   //delete button function
   $(".delete-list").click(function (event) {
     // Prevent page reload
