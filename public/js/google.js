@@ -1,4 +1,4 @@
-console.log("connected");
+
 
 function initMap() {
   var sydney =
