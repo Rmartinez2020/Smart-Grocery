@@ -44,4 +44,12 @@ body {
     display: flex;
     bottom: 10px;
 }
-
+.food-image {
+    background-image: url(../images/img_food4.jpg);
+    /* background-color: #cccccc; */
+    height: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
