@@ -20,8 +20,9 @@ $(document).ready(function () {
     })
     
   });
-  $.get("/api/Recipes", function(data) {
-    console.log("data")
-  }
-  )
+  //delete button function
+  $("#delete-list").click(function(){
+    $("text").remove();
+    console.log("deleted")
+  })
 });
