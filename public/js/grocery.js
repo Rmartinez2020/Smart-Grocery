@@ -1,12 +1,14 @@
 $(document).ready(function () {
     // Set Global Variables
-    const url = window.location.search();
+    const url = window.location.search;
     const updatingList = false;
-    const listId;
+    let listId;
+    const name = $("#name");
 
     if (url.indexOf("?list-id=") !== -1) {
         //set the list id
         listId = url.split("=")[1];
+        console.log(listId);
         getGroceryList(listId);
     }
     // When the form is submitted
@@ -30,8 +32,11 @@ $(document).ready(function () {
     });
     // Get one grocery list
     function getGroceryList(id) {
-        $.get("/api/groceries/"+id , data => {
-            
+        $.get("/api/groceries/"+id , list => {
+            name.val(list.name);
+            $("#items").val(list.items);
+            console.log(list.name);
+            console.log(list.items);
         })
     }
 })

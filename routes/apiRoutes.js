@@ -33,6 +33,16 @@ router.get("/Recipes", (req, res) => {
         res.send(dbAllRecipe)
     });
 });
+// Route to get one grocery list
+router.get("/groceries/:id", (req,res) => {
+    db.Grocery.findOne({
+        where:{
+            id: req.params.id
+        }
+    }).then(list => {
+        res.send(list);
+    });
+});
 // Route to create new Grocery List
 router.post("/newList", (req, res) => {
     // Get the req data

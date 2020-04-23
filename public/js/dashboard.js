@@ -22,6 +22,6 @@ $(document).ready(function () {
     // Grab the id
     const id = $(this).data("listid");
     // Go to make a list page
-    window.location.assign("/add-recipe?list-id="+id);
+    window.location.assign("/grocery-list?list-id="+id);
   })
 });
