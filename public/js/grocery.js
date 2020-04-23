@@ -1,39 +1,57 @@
-// Once the document loads
 $(document).ready(function () {
-  // When the form is submitted
-  $(".make-list").on("submit", function (event) {
-    // prevent page reload
-    event.preventDefault();
-    // Get the users id
-    $.get("/auth/user", function (data) {
-      // Create an object with the information from the form and the users id
-      const List = {
-        name: $("#name").val().trim(),
-        items: $("#items").val().trim(),
-        UserId: data.id
-      }
-      // Post new list to DB
-      $.post("/api/newList", List, function () {
-        // Reload the page
-        window.location.reload();
-      })
-    })
+    // Set Global Variables
+    const url = window.location.search;
+    let updatingList = false;
+    let listId;
+    const name = $("#name");
+    // Handle button click
+    $(".make-list").on("submit", handleSubmit);
 
-  });
-  //delete button function
-  $(".delete-list").click(function (event) {
-    // Prevent page reload
-    event.preventDefault();
-    // Get the list id
-    const id = $(this).data("listid");
-    // do a delete to the database
-    $.ajax({ url: "/api/grocery-list/" + id, method: "DELETE" })
-      .then(function (data) {
-        //reload the page
-        window.location.reload();
-      })
-      .catch(function (err) {
-        if (err) throw err;
-      });
-  })
-});
+    if (url.indexOf("?list-id=") !== -1) {
+        //set the list id
+        listId = url.split("=")[1];
+        console.log(listId);
+        getGroceryList(listId);
+    }
+    // When the form is submitted
+    function handleSubmit(event) {
+        // prevent page reload
+        event.preventDefault();
+        // Create an object with the information from the form
+        const List = {
+            name: $("#name").val().trim(),
+            items: $("#items").val().trim(),
+        }
+        if (updatingList) {
+            //get the user id and add it to object
+            $.get("/auth/user").then(function (data) {
+                List.UserId = data.id
+                $.post("/api/groceries/" + listId, List, function () {
+                    console.log("List Updated");
+                })
+            })
+            window.location.reload();
+        } else {
+            $.get("/auth/user").then(function (data) {
+                List.UserId = data.id
+                // Post new list to DB
+                $.post("/api/newList", List, function () {
+                    console.log("List created");
+                    // Reload the page
+                })
+            });
+            window.location.reload();
+        }
+
+    };
+    // Get one grocery list
+    function getGroceryList(id) {
+        $.get("/api/groceries/" + id, list => {
+            //put the data in th form
+            name.val(list.name);
+            $("#items").val(list.items);
+            //set updating to true
+            updatingList = true;
+        })
+    }
+})
