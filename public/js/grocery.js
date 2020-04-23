@@ -18,11 +18,11 @@ $(document).ready(function () {
          window.location.reload();
       })
     })
-
-    //delete button function
-    $("delete-list").click(function(){
-      console.log("deleted")
-    })
     
   });
+  //delete button function
+  $("delete-list").click(function(){
+    $("p").remove();
+    console.log("deleted")
+  })
 });
