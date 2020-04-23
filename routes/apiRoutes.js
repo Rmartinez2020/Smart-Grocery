@@ -29,8 +29,9 @@ router.get("/Recipes", (req, res) => {
   // Take the request...
   db.Recipe.findAll({    
   }).then(function(dbAllRecipe) {
+      console.log(dbAllRecipe)
     res.send(dbAllRecipe)
-
+  })
 });
 // Route to create new Grocery List
 router.post("/newList", (req, res) => {

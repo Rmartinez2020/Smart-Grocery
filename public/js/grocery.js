@@ -20,4 +20,8 @@ $(document).ready(function () {
     })
     
   });
+  $.get("/api/Recipes", function(data) {
+    console.log("data")
+  }
+  )
 });
