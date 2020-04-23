@@ -5,7 +5,7 @@ $(document).ready(function () {
     let listId;
     const name = $("#name");
     // Handle button click
-    $(".make-list").on("submit", handleSubmit)
+    $(".make-list").on("submit", handleSubmit);
 
     if (url.indexOf("?list-id=") !== -1) {
         //set the list id
@@ -28,15 +28,19 @@ $(document).ready(function () {
                 List.UserId = data.id
                 $.post("/api/groceries/" + listId, List, function () {
                     console.log("List Updated");
-                    window.location.assign("/");
                 })
             })
+            window.location.reload();
         } else {
-            // Post new list to DB
-            $.post("/api/newList", List, function () {
-                // Reload the page
-                window.location.reload();
-            })
+            $.get("/auth/user").then(function (data) {
+                List.UserId = data.id
+                // Post new list to DB
+                $.post("/api/newList", List, function () {
+                    console.log("List created");
+                    // Reload the page
+                })
+            });
+            window.location.reload();
         }
 
     };
