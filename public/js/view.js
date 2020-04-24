@@ -64,6 +64,9 @@ $(document).ready(function () {
                 items: newItems,
                 UserId:list.UserId
             }
+            $.post("/api/groceries/" + selectedList, newList, function () {
+                console.log("List Updated");
+            })
         })
 
     })
