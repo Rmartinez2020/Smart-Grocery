@@ -66,7 +66,9 @@ $(document).ready(function () {
             }
             $.post("/api/groceries/" + selectedList, newList, function () {
                 console.log("List Updated");
+                
             })
+            window.location.href="/?updated";
         })
 
     })
