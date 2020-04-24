@@ -1,14 +1,21 @@
 $(document).ready(function () {
     let id = window.location.search.split("=")[1];
-
+    let select = $("#list")
     $.get("/api/one-recipe/" + id, recipe => {
         console.log(recipe);
+        // create a form
+        $.get("/auth/user",userdata => {
+            $.get("/api/user-groceries/"+userdata.id, lists =>{
+                lists.forEach(list => {
+                    select.append(createListOption(list))
+                });
+            })
+        })
         // create ingredients card
 
         // make ingredients an array
         let newIngredients = []
         let ingList = $("<ul class='list-group'>");
-        let button = $("<button class='btn float-right btn-success' type='submit'>Add To Your Groceries</button>")
         let ingredients = recipe[0].ingredients.split(",");
         ingredients.forEach(element => {
             newIngredients.push(element.replace("[", "").replace("]", "").replace("'", "").replace("'", ""));
@@ -20,7 +27,7 @@ $(document).ready(function () {
         let cardHeader = $(`<div class="card-header">Ingredients:</div>`);
         let cardBody = $(`<div class="card-body">`);
         cardBody.append(ingList);
-        ingCard.append(cardHeader, cardBody, button)
+        ingCard.append(cardHeader, cardBody)
         // create steps card
 
         // make steps into an array
@@ -39,8 +46,19 @@ $(document).ready(function () {
         stepsCardBody.append(stepsList)
         stepsCard.append(stepsCardHeader, stepsCardBody)
         let name = $(`<h1>${recipe[0].name.toUpperCase()}</h1>`);
-        $(".ing-view").append(ingCard)
+        $(".ing-view").prepend(ingCard)
         $(".steps-view").append(stepsCard)
-        $(".main").append(name)
+        $(".main").prepend(name)
     })
+    $(document).on("submit", "#add", function () {
+        console.log("works")
+    })
+
+    // Creates newlist options in the dropdown
+    function createListOption(list) {
+        var listOption = $("<option>");
+        listOption.attr("value", list.id);
+        listOption.text(list.name);
+        return listOption;
+    }
 });

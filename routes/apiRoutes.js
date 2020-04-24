@@ -100,4 +100,15 @@ router.get("/one-recipe/:id", (req, res) => {
         res.send(data);
     })
 })
+// Route to get all grocery list for user
+router.get("/user-groceries/:id", (req, res) => {
+    db.Grocery.findAll({
+        // only for current user
+        where:{
+            UserId: req.session.passport.user
+        }
+    }).then(data => {
+        res.send(data);
+    })
+})
 module.exports = router;
