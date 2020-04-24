@@ -50,8 +50,8 @@ $(document).ready(function () {
         $(".steps-view").append(stepsCard)
         $(".main").prepend(name)
     })
-    $(document).on("submit", "#add", function () {
-        console.log("works")
+    $("#add").on("submit", function (event) {
+        event.preventDefault()
     })
 
     // Creates newlist options in the dropdown
