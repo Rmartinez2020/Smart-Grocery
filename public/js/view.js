@@ -1,21 +1,13 @@
 $(document).ready(function () {
     let id = window.location.search.split("=")[1];
     let select = $("#list")
+    let newIngredients = []
     $.get("/api/one-recipe/" + id, recipe => {
         console.log(recipe);
-        // create a form
-        $.get("/auth/user",userdata => {
-            $.get("/api/user-groceries/"+userdata.id, lists =>{
-                lists.forEach(list => {
-                    select.append(createListOption(list))
-                });
-            })
-        })
         // create ingredients card
 
         // make ingredients an array
-        let newIngredients = []
-        let ingList = $("<ul class='list-group'>");
+        let ingList = $("<ul class='list-group' id='ingredients'>");
         let ingredients = recipe[0].ingredients.split(",");
         ingredients.forEach(element => {
             newIngredients.push(element.replace("[", "").replace("]", "").replace("'", "").replace("'", ""));
@@ -38,7 +30,7 @@ $(document).ready(function () {
             newSteps.push(element.replace("[", "").replace("'", "").replace("']", ""))
         });
         for (let index = 0; index < newSteps.length; index++) {
-            stepsList.append($(`<li class="list-group-item" id=${index}>${newSteps[index]}</li>`));
+            stepsList.append($(`<li class="list-group-item" id='ing-${index}'>${newSteps[index]}</li>`));
         }
         let stepsCard = $(`<div class="card my-4">`);
         let stepsCardHeader = $(`<div class="card-header">Steps:</div>`);
@@ -50,8 +42,30 @@ $(document).ready(function () {
         $(".steps-view").append(stepsCard)
         $(".main").prepend(name)
     })
+    // create a form
+    $.get("/auth/user",userdata => {
+        $.get("/api/user-groceries/"+userdata.id, lists =>{
+            lists.forEach(list => {
+                select.append(createListOption(list))
+            });
+        })
+    })
+
     $("#add").on("submit", function (event) {
-        event.preventDefault()
+        event.preventDefault();
+        selectedList = select.val();
+        $.get("/api/groceries/"+selectedList, list => {
+            let newItems=list.items
+            newIngredients.forEach(element => {
+                newItems+=" "+ element
+            });
+            let newList= {
+                id:selectedList,
+                items: newItems,
+                UserId:list.UserId
+            }
+        })
+
     })
 
     // Creates newlist options in the dropdown
