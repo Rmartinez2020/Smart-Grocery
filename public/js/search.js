@@ -23,4 +23,8 @@ $(document).ready(function () {
             }
         })
     });
+    $(document).on("click","#view", function(event){
+        let id = $(this).data("id");
+        window.location.href="/view-recipe?id="+id
+    })
 });
