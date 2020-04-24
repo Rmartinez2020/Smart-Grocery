@@ -8,6 +8,7 @@ $(document).ready(function () {
         // make ingredients an array
         let newIngredients = []
         let ingList = $("<ul class='list-group'>");
+        let button = $("<button class='btn float-right btn-success' type='submit'>Add To Your Groceries</button>")
         let ingredients = recipe[0].ingredients.split(",");
         ingredients.forEach(element => {
             newIngredients.push(element.replace("[", "").replace("]", "").replace("'", "").replace("'", ""));
@@ -19,7 +20,7 @@ $(document).ready(function () {
         let cardHeader = $(`<div class="card-header">Ingredients:</div>`);
         let cardBody = $(`<div class="card-body">`);
         cardBody.append(ingList);
-        ingCard.append(cardHeader, cardBody)
+        ingCard.append(cardHeader, cardBody, button)
         // create steps card
 
         // make steps into an array
@@ -33,11 +34,13 @@ $(document).ready(function () {
             stepsList.append($(`<li class="list-group-item" id=${index}>${newSteps[index]}</li>`));
         }
         let stepsCard = $(`<div class="card my-4">`);
-        let stepsCardHeader = $(`<div class="card-header">Ingredients:</div>`);
+        let stepsCardHeader = $(`<div class="card-header">Steps:</div>`);
         let stepsCardBody = $(`<div class="card-body">`);
         stepsCardBody.append(stepsList)
         stepsCard.append(stepsCardHeader, stepsCardBody)
         let name = $(`<h1>${recipe[0].name.toUpperCase()}</h1>`);
-        $(".recipe-view").append(name, ingCard, stepsCard)
+        $(".ing-view").append(ingCard)
+        $(".steps-view").append(stepsCard)
+        $(".main").append(name)
     })
 });
