@@ -71,3 +71,9 @@ body {
     font-family: 'Fjalla One', sans-serif;
     font-size: large;
 }
+#title {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 100px;
+    font-style: italic;
+    font-weight: bolder;
+}
