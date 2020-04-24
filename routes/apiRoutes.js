@@ -90,4 +90,14 @@ router.get("/recipe/:search", (req, res) => {
         res.send(data);
     })
 })
+// Route to get recipe by id
+router.get("/one-recipe/:id", (req, res) => {
+    db.Recipe.findAll({
+        where:{
+            id: req.params.id
+        }
+    }).then(data => {
+        res.send(data);
+    })
+})
 module.exports = router;
