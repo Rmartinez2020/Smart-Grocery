@@ -51,4 +51,17 @@ body {
     display: flex;
     bottom: 10px;
 }
+#links {
+    color:white;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: larger;
+    
 
+}
+
+#smart {
+    font-family: 'Orbitron', sans-serif;
+    color: whitesmoke;
+    font-size: xx-large;
+    font-weight: bold;
+}
