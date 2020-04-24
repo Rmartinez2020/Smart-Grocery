@@ -55,8 +55,6 @@ body {
     color:white;
     font-family: 'Fjalla One', sans-serif;
     font-size: larger;
-    
-
 }
 
 #smart {
@@ -64,4 +62,12 @@ body {
     color: whitesmoke;
     font-size: xx-large;
     font-weight: bold;
+}
+#word {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 75px;
+}
+#input {
+    font-family: 'Fjalla One', sans-serif;
+    font-size: large;
 }
