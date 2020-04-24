@@ -30,7 +30,7 @@ $(document).ready(function () {
                     console.log("List Updated");
                 })
             })
-            window.location.reload();
+            window.location.href="/?updated";
         } else {
             $.get("/auth/user").then(function (data) {
                 List.UserId = data.id
@@ -40,7 +40,7 @@ $(document).ready(function () {
                     // Reload the page
                 })
             });
-            window.location.reload();
+            window.location.href="/?updated";
         }
 
     };

@@ -1,5 +1,10 @@
 // Once the document loads
 $(document).ready(function () {
+  // if something is being up dated reload the page
+  const url = window.location.search;
+  if (url.indexOf("?updated") !== -1) {
+    window.location.href="/"
+}
   //delete button function
   $(".delete-list").click(function (event) {
     // Prevent page reload

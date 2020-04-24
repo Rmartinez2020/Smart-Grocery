@@ -90,4 +90,25 @@ router.get("/recipe/:search", (req, res) => {
         res.send(data);
     })
 })
+// Route to get recipe by id
+router.get("/one-recipe/:id", (req, res) => {
+    db.Recipe.findAll({
+        where:{
+            id: req.params.id
+        }
+    }).then(data => {
+        res.send(data);
+    })
+})
+// Route to get all grocery list for user
+router.get("/user-groceries/:id", (req, res) => {
+    db.Grocery.findAll({
+        // only for current user
+        where:{
+            UserId: req.session.passport.user
+        }
+    }).then(data => {
+        res.send(data);
+    })
+})
 module.exports = router;
